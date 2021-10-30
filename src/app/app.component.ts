@@ -9,15 +9,21 @@ import { PaisesService } from './services/paises.service';
 export class AppComponent {
   formulario: FormGroup;
   paises: any[];
+  Yesdata: boolean;
   constructor(private paisesService: PaisesService) {
     this.paises = [];
+    this.Yesdata = true;
     this.formulario = new FormGroup({
       filtro: new FormControl('todos'),
       valor: new FormControl(''),
     });
+
+    
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAll();
+  }
 
   getAll() {
     this.paisesService
@@ -42,7 +48,7 @@ export class AppComponent {
           .getForRegion(value)
           .then((resolve) => (this.paises = resolve))
           .catch((error) => {
-            console.log(error);
+            this.Yesdata = false;
           });
         break;
 
@@ -51,7 +57,7 @@ export class AppComponent {
           .getForLanguage(value)
           .then((resolve) => (this.paises = resolve))
           .catch((error) => {
-            console.log(error);
+            this.Yesdata = false;
           });
         break;
 
@@ -60,7 +66,7 @@ export class AppComponent {
           .getForMOneda(value)
           .then((resolve) => (this.paises = resolve))
           .catch((error) => {
-            console.log(error);
+            this.Yesdata = false;
           });
 
         break;

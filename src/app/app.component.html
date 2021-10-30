@@ -1,3 +1,11 @@
+<nav class="navbar navbar-light bg-danger">
+  <div class="nav-content text-center">
+    <i class="fab fa-angular text-light fs-4"></i>
+    <span class="text-light">Consumo de API - PAISES</span>  
+    
+  </div>
+</nav>
+
 <div class="container mt-4">
   <form [formGroup]="formulario" action="" (ngSubmit)="filtrar()">
     <div class="row">
@@ -6,7 +14,7 @@
         <select class="form-select" formControlName="filtro">
           <option value="todos" selected>Todos</option>
           <option value="lenguage">Lenguaje</option>
-          <option value="region">Región</option>
+          <option value="region">Continente</option>
           <option value="moneda">Moneda</option>
         </select>
       </div>
@@ -19,21 +27,34 @@
   </form>
 </div>
 
-<div class="m-5">
-  <table class="table">
+<div class="m-2">
+  <table class="table table-responsive table-striped table-hover">
     <thead>
       <th>Nombre</th>
+      <th>Capital</th>
       <th>Continente</th>
       <th>Lenguaje</th>
+      <th>Mapa</th>
+      <th>Moneda</th>
       <th>Bandera</th>
     </thead>
     <tbody>
-      <tr *ngFor="let pais of paises">
-        <td>{{ pais.name }}</td>
-        <td>{{ pais.capital }}</td>
-        <td>{{ pais.languages | json }}</td>
-        <td><img width="200px" [src]="pais.flag" /></td>
-      </tr>
+
+      <ng-container *ngIf="Yesdata">
+        <tr  *ngFor="let pais of paises">
+          <td>{{ pais.name.common }}</td>
+          <td>{{ pais.capital }}</td>
+          <td>{{ pais.region }}</td>      
+          <td>{{ pais.languages | json }}</td>
+          <td><a [href]="pais.maps.googleMaps" target="_blank">Mapa</a></td>
+          <td>{{ pais.currencies | mapString}}</td>
+          <td><img width="200px" [src]="pais.flags.png" /></td>
+        </tr>
+    </ng-container>
+
+      
     </tbody>
   </table>
+  <div *ngIf="!Yesdata" class="NoData">No hay datos para mostrar</div>
+
 </div>

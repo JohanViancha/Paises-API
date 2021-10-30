@@ -8,3 +8,25 @@
 .grid img {
   width: 200px;
 }
+
+th td{
+  width: 16.6%;
+}
+
+.header{
+  width: 100%;
+  height: 50px;
+}
+
+.nav-content{
+  display: flex;
+  gap: 20px;
+  margin: auto;
+}
+
+.NoData{
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  color: tomato;
+}
