@@ -12,26 +12,25 @@ export class PaisesService {
   }
 
   getAll(): Promise<any[]> {
-    return this.httpClient.get<any[]>(`${this.Url}/all`).toPromise();
+    return this.httpClient.get<any | any[]>(`${this.Url}/all`).toPromise().catch(()=>{});
   }
 
   getForRegion(region: string): Promise<any[]> {
     return this.httpClient
-      .get<any[]>(`${this.Url}/region/${region}`)
-      .toPromise();
+      .get<any | any[]>(`${this.Url}/region/${region}`)
+      .toPromise().catch(()=>{});
   }
 
   getForLanguage(language: string): Promise<any[]> {
-    console.log(language);
     return this.httpClient
-      .get<any[]>(`${this.Url}/lang/${language}`)
-      .toPromise();
+      .get<any | any[]>(`${this.Url}/lang/${language}`)
+      .toPromise().catch((err)=>{});
   }
 
   getForMOneda(moneda: string): Promise<any[]> {
 
     return this.httpClient
-      .get<any[]>(`${this.Url}/currency/${moneda}`)
-      .toPromise();
+      .get<any| any[]>(`${this.Url}/currency/${moneda}`)
+      .toPromise().catch(()=>{});
   }
 }

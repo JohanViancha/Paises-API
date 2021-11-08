@@ -6,16 +6,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MapStringPipe implements PipeTransform {
 
   transform(value: object, ...args: unknown[]): string {
-    console.log(value);
-    let object = '';
-    Object.entries(value).forEach(([key, value],i) => {
+
+
+    if(value){
+      let object = '';
+      Object.entries(value).forEach(([key, value],i) => {
       if(i==1){
-        object +=`,`
+        object +=`,`;
       }
       object += `${value.symbol} ${value.name} `;
 
      });
       return object;
+    }
+    return 'No disponible';
   }
 
 }

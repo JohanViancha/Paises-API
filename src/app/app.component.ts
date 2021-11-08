@@ -18,7 +18,7 @@ export class AppComponent {
       valor: new FormControl(''),
     });
 
-    
+
   }
 
   ngOnInit(): void {
@@ -26,13 +26,12 @@ export class AppComponent {
   }
 
   getAll() {
-    this.paisesService
-      .getAll()
+    this.paisesService.getAll()
       .then((resolve) => {
         this.paises = resolve;
       })
       .catch((error) => {
-        console.log(error);
+        this.Yesdata = false;
       });
   }
 
