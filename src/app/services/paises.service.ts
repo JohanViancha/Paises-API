@@ -12,25 +12,27 @@ export class PaisesService {
   }
 
   getAll(): Promise<any[]> {
-    return this.httpClient.get<any | any[]>(`${this.Url}/all`).toPromise().catch(()=>{});
+    return this.httpClient.get<any | any[]>(`${this.Url}/all`).toPromise().catch(()=>{
+      console.log('Error al acceder a la API (All)')
+    });
   }
 
   getForRegion(region: string): Promise<any[]> {
     return this.httpClient
       .get<any | any[]>(`${this.Url}/region/${region}`)
-      .toPromise().catch(()=>{});
+      .toPromise().catch(()=>{console.log('Error al acceder a la API (Region)')});
   }
 
   getForLanguage(language: string): Promise<any[]> {
     return this.httpClient
       .get<any | any[]>(`${this.Url}/lang/${language}`)
-      .toPromise().catch((err)=>{});
+      .toPromise().catch((err)=>{console.log('Error al acceder a la API (Lan)')});
   }
 
   getForMOneda(moneda: string): Promise<any[]> {
 
     return this.httpClient
       .get<any| any[]>(`${this.Url}/currency/${moneda}`)
-      .toPromise().catch(()=>{});
+      .toPromise().catch(()=>{console.log('Error al acceder a la API (Currency)')});
   }
 }
